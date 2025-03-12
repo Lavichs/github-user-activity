@@ -19,13 +19,13 @@ pip install colorama requests
 Запустите приложение, передав имя пользователя GitHub как аргумент командной строки:
 
 ```bash
-python user_activity_cli.py <username>
+python github-activity.py <username>
 ```
 
 ### Пример
 
 ```bash
-python user_activity_cli.py torvalds
+python github-activity.py torvalds
 ```
 
 ## Выходные данные
