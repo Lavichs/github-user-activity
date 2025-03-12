@@ -1,5 +1,6 @@
 import argparse
-import requests
+import urllib.request
+import json
 from colorama import Fore, Style, init
 
 init(autoreset=True)
@@ -12,7 +13,8 @@ if __name__ == '__main__':
     parser.add_argument("username", type=str, help='ID задачи. (ID of task)')
     username = vars(parser.parse_args()).get('username')
 
-    data = requests.get(f'https://api.github.com/users/{username}/events').json()
+    response = urllib.request.urlopen(f'https://api.github.com/users/{username}/events')
+    data = json.loads(response.read())
 
     for action in data:
         action_type = action.get('type')
@@ -37,3 +39,4 @@ if __name__ == '__main__':
                 print(Fore.LIGHTCYAN_EX + f"Released {action.get('payload').get('release').get('url').split('/')[5]}")
             case _:
                 print(Fore.RED + f"Unknown type: {action_type}")
+    
